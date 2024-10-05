@@ -74,7 +74,8 @@ SET explain_output = 'all';
 
 """
 
-for t in [1, 4, 8]: 
+# for t in [1, 4, 8]: # uncomment for thread_count experiment
+for t in [8]: # only use 8 threads for second part of project where we profile different database sizes. 
     script += f"SET threads TO {t};\n"
     for q in range(3): 
         for i in range(50): 
