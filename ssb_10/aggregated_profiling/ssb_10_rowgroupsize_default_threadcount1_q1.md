@@ -3,10 +3,10 @@
 ││    Query Profiling Information    ││
 │└───────────────────────────────────┘│
 └─────────────────────────────────────┘
-EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM     lineorder,     date WHERE     LO_ORDERDATE = D_DATEKEY     AND D_YEAR = 1993     AND LO_DISCOUNT BETWEEN 1 AND 3     AND LO_QUANTITY < 25;
+EXPLAIN ANALYZE  SELECT sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE   FROM read_parquet('lineorder_default_rowgroup_size.parquet') lineorder,        date   WHERE LO_ORDERDATE = D_DATEKEY       AND D_YEAR = 1993       AND LO_DISCOUNT BETWEEN 1 AND 3       AND LO_QUANTITY < 25;
 ┌────────────────────────────────────────────────┐
 │┌──────────────────────────────────────────────┐│
-││              Total Time: x̄:0.089,cv:0.036s             ││
+││              Total Time: x̄:10.656,cv:0.166s              ││
 │└──────────────────────────────────────────────┘│
 └────────────────────────────────────────────────┘
 ┌────────────────────────────────────────────────┐
@@ -92,19 +92,20 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │   Build Max: 1998-12-30   │              │
 │                           │              │
 │        1193001 Rows       │              │
-│          (x̄:0.037,cv:0.129s)          │              │
+│          (x̄:0.042,cv:0.090s)          │              │
 └─────────────┬─────────────┘              │
 ┌─────────────┴─────────────┐┌─────────────┴─────────────┐
 │         TABLE_SCAN        ││         TABLE_SCAN        │
 │    ────────────────────   ││    ────────────────────   │
-│         lineorder         ││            date           │
-│                           ││                           │
-│        Projections:       ││        Projections:       │
-│        LO_ORDERDATE       ││         D_DATEKEY         │
-│        LO_DISCOUNT        ││                           │
-│      LO_EXTENDEDPRICE     ││          Filters:         │
-│                           ││ D_YEAR=1993 AND D_YEAR IS │
-│          Filters:         ││          NOT NULL         │
+│         Function:         ││            date           │
+│        READ_PARQUET       ││                           │
+│                           ││        Projections:       │
+│        Projections:       ││         D_DATEKEY         │
+│        LO_ORDERDATE       ││                           │
+│        LO_DISCOUNT        ││          Filters:         │
+│      LO_EXTENDEDPRICE     ││ D_YEAR=1993 AND D_YEAR IS │
+│                           ││          NOT NULL         │
+│          Filters:         ││                           │
 │     LO_DISCOUNT>=1 AND    ││                           │
 │     LO_DISCOUNT<=3 AND    ││                           │
 │   LO_DISCOUNT IS NOT NULL ││                           │
@@ -112,5 +113,5 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │   LO_QUANTITY IS NOT NULL ││                           │
 │                           ││                           │
 │        1193001 Rows       ││          365 Rows         │
-│          (x̄:0.305,cv:0.037s)          ││          (x̄:0.000,cv:0.000s)          │
+│          (x̄:10.580,cv:0.166s)         ││          (x̄:0.000,cv:0.000s)          │
 └───────────────────────────┘└───────────────────────────┘

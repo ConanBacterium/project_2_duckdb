@@ -6,7 +6,7 @@
 EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM     lineorder,     date WHERE     LO_ORDERDATE = D_DATEKEY     AND D_YEAR = 1993     AND LO_DISCOUNT BETWEEN 1 AND 3     AND LO_QUANTITY < 25;
 ┌────────────────────────────────────────────────┐
 │┌──────────────────────────────────────────────┐│
-││               Total Time: (mean: 0.66686, std: 0.29699, cv: 0.44536)s              ││
+││               Total Time: x̄:0.667,cv:0.445s              ││
 │└──────────────────────────────────────────────┘│
 └────────────────────────────────────────────────┘
 ┌────────────────────────────────────────────────┐
@@ -69,7 +69,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │    Aggregates: sum(#0)    │
 │                           │
 │           1 Rows          │
-│          ((mean: 0.01347, std: 0.00481, cv: 0.35705)s)          │
+│          (x̄:0.013,cv:0.357s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -78,7 +78,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │ (LO_DISCOUNT AS INTEGER)) │
 │                           │
 │       11913972 Rows       │
-│          ((mean: 0.01102, std: 0.00306, cv: 0.27752)s)          │
+│          (x̄:0.011,cv:0.278s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         HASH_JOIN         │
@@ -92,7 +92,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │   Build Max: 1998-12-30   │              │
 │                           │              │
 │       11913972 Rows       │              │
-│          ((mean: 0.53857, std: 0.07528, cv: 0.13977)s)          │              │
+│          (x̄:0.539,cv:0.140s)          │              │
 └─────────────┬─────────────┘              │
 ┌─────────────┴─────────────┐┌─────────────┴─────────────┐
 │         TABLE_SCAN        ││         TABLE_SCAN        │
@@ -112,5 +112,5 @@ EXPLAIN ANALYZE  SELECT     sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE FROM 
 │   LO_QUANTITY IS NOT NULL ││                           │
 │                           ││                           │
 │       11913972 Rows       ││          365 Rows         │
-│          ((mean: 4.64429, std: 2.28506, cv: 0.49201)s)         ││          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:4.644,cv:0.492s)         ││          (x̄:0.000,cv:0.000s)          │
 └───────────────────────────┘└───────────────────────────┘

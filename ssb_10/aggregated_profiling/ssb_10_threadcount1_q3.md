@@ -6,7 +6,7 @@
 EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     lineorder,     date,     part,     supplier WHERE     LO_ORDERDATE = D_DATEKEY     AND LO_PARTKEY = P_PARTKEY     AND LO_SUPPKEY = S_SUPPKEY     AND P_BRAND BETWEEN     'MFGR#2221' AND 'MFGR#2228'     AND S_REGION = 'ASIA' GROUP BY     D_YEAR,     P_BRAND ORDER BY     D_YEAR,     P_BRAND;
 ┌────────────────────────────────────────────────┐
 │┌──────────────────────────────────────────────┐│
-││              Total Time: (mean: 0.71716, std: 0.05292, cv: 0.07379)s              ││
+││              Total Time: x̄:0.717,cv:0.074s              ││
 │└──────────────────────────────────────────────┘│
 └────────────────────────────────────────────────┘
 ┌────────────────────────────────────────────────┐
@@ -73,7 +73,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │           g(#2)           │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │          ORDER_BY         │
@@ -82,7 +82,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │      part.P_BRAND ASC     │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -94,7 +94,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │        hugeint(#2)        │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -104,7 +104,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │          P_BRAND          │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -116,7 +116,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │             #2            │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │       HASH_GROUP_BY       │
@@ -128,7 +128,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │    Aggregates: sum(#2)    │
 │                           │
 │          56 Rows          │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -138,7 +138,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │         LO_REVENUE        │
 │                           │
 │         94802 Rows        │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         PROJECTION        │
@@ -158,7 +158,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │    l_utinyint(#8, 1992)   │
 │                           │
 │         94802 Rows        │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐
 │         HASH_JOIN         │
@@ -172,7 +172,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │   Build Max: 1998-12-30   │                                                                        │
 │                           │                                                                        │
 │         94802 Rows        │                                                                        │
-│          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │                                                                        │
+│          (x̄:0.000,cv:0.000s)          │                                                                        │
 └─────────────┬─────────────┘                                                                        │
 ┌─────────────┴─────────────┐                                                          ┌─────────────┴─────────────┐
 │         HASH_JOIN         │                                                          │         TABLE_SCAN        │
@@ -186,7 +186,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │     Build Max: 600000     │                                           │              │                           │
 │                           │                                           │              │                           │
 │         94802 Rows        │                                           │              │         2555 Rows         │
-│          ((mean: 0.08204, std: 0.00866, cv: 0.10550)s)          │                                           │              │          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.082,cv:0.106s)          │                                           │              │          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘                                           │              └───────────────────────────┘
 ┌─────────────┴─────────────┐                             ┌─────────────┴─────────────┐
 │         HASH_JOIN         │                             │           FILTER          │
@@ -200,7 +200,7 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │      Build Max: 20000     │              │              │                           │
 │                           │              │              │                           │
 │       11996332 Rows       │              │              │         4772 Rows         │
-│          ((mean: 0.17531, std: 0.01371, cv: 0.07820)s)          │              │              │          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.175,cv:0.078s)          │              │              │          (x̄:0.000,cv:0.000s)          │
 └─────────────┬─────────────┘              │              └─────────────┬─────────────┘
 ┌─────────────┴─────────────┐┌─────────────┴─────────────┐┌─────────────┴─────────────┐
 │         TABLE_SCAN        ││         TABLE_SCAN        ││         TABLE_SCAN        │
@@ -217,5 +217,5 @@ EXPLAIN ANALYZE  SELECT     sum(LO_REVENUE),     D_YEAR,     P_BRAND FROM     li
 │                           ││                           ││     P_BRAND IS NOT NULL   │
 │                           ││                           ││                           │
 │       59920777 Rows       ││         4001 Rows         ││         6409 Rows         │
-│          ((mean: 0.42510, std: 0.03015, cv: 0.07092)s)          ││          ((mean: 0.00000, std: 0.00000, cv: 0.00000)s)          ││          ((mean: 0.01000, std: 0.00000, cv: 0.00000)s)          │
+│          (x̄:0.425,cv:0.071s)          ││          (x̄:0.000,cv:0.000s)          ││          (x̄:0.010,cv:0.000s)          │
 └───────────────────────────┘└───────────────────────────┘└───────────────────────────┘

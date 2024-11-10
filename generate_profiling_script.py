@@ -74,15 +74,79 @@ SET explain_output = 'all';
 
 """
 
-# for t in [1, 4, 8]: # uncomment for thread_count experiment
-for t in [8]: # only use 8 threads for second part of project where we profile different database sizes. 
-    script += f"SET threads TO {t};\n"
-    for q in range(3): 
-        for i in range(50): 
-            script += f".output outputs/hot_repetition/threadcount_{t}/q{q+1}/profile_{i}.md \n"
-            script += "EXPLAIN ANALYZE "
-            script += queries[q] 
-            script += "\n"
+###############################
+# For threadcount experiments #
+###############################
 
-with open("hot_repetitions.sql", "w") as outfile: 
+# for t in [1, 4, 8]: # uncomment for thread_count experiment
+#     script += f"SET threads TO {t};\n"
+#     for q in range(3): 
+#         for i in range(50): 
+#             script += f".output outputs/hot_repetition/threadcount_{t}/q{q+1}/profile_{i}.md \n"
+#             script += "EXPLAIN ANALYZE "
+#             script += queries[q] 
+#             script += "\n"
+
+
+################################
+# For scale factor experiments #
+################################
+
+# for t in [8]: # only use 8 threads for second part of project where we profile different database sizes. 
+#     script += f"SET threads TO {t};\n"
+#     for q in range(3): 
+#         for i in range(50): 
+#             script += f".output outputs/hot_repetition/threadcount_{t}/q{q+1}/profile_{i}.md \n"
+#             script += "EXPLAIN ANALYZE "
+#             script += queries[q] 
+#             script += "\n"
+
+# with open("hot_repetitions.sql", "w") as outfile: 
+#     outfile.write(script)
+
+##################################
+# For row group size experiments #
+##################################
+
+query1_rowsize_10k = """
+SELECT sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE
+  FROM read_parquet('lineorder_10k_rowgroup_size.parquet') lineorder,
+       date
+  WHERE LO_ORDERDATE = D_DATEKEY
+      AND D_YEAR = 1993
+      AND LO_DISCOUNT BETWEEN 1 AND 3
+      AND LO_QUANTITY < 25;
+"""
+
+for t in [1, 4, 8]: # uncomment for thread_count experiment
+    script += f"SET threads TO {t};\n"
+    for i in range(50): 
+        script += f".output outputs/hot_repetition/rowgroupsize_10k/threadcount_{t}/q1/profile_{i}.md \n"
+        script += "EXPLAIN ANALYZE "
+        # script += query1_rowsize_10k
+        script += query1_rowsize_10k
+        script += "\n"
+
+
+query1_rowsize_default = """
+SELECT sum(LO_EXTENDEDPRICE * LO_DISCOUNT) AS REVENUE
+  FROM read_parquet('lineorder_default_rowgroup_size.parquet') lineorder,
+       date
+  WHERE LO_ORDERDATE = D_DATEKEY
+      AND D_YEAR = 1993
+      AND LO_DISCOUNT BETWEEN 1 AND 3
+      AND LO_QUANTITY < 25;
+"""
+
+for t in [1, 4, 8]: # uncomment for thread_count experiment
+    script += f"SET threads TO {t};\n"
+    for i in range(50): 
+        script += f".output outputs/hot_repetition/rowgroupsize_default/threadcount_{t}/q1/profile_{i}.md \n"
+        script += "EXPLAIN ANALYZE "
+        # script += query1_rowsize_10k
+        script += query1_rowsize_default
+        script += "\n"
+
+with open("hot_repetitions_rowgroupsize_experiments.sql", "w") as outfile: 
     outfile.write(script)
+            
