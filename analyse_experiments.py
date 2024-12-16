@@ -8,7 +8,8 @@ def process_files(filepaths, line_numbers, output_filepath):
     
     # Extract numbers from specified lines
     for filepath in filepaths:
-        with open(filepath, 'r') as file:
+        print(f"filepath: {filepath}")
+        with open(filepath, 'r', encoding='utf-8') as file:
             lines = file.readlines()
             if len(lines) < 2:
                 print(filepath)
@@ -208,64 +209,127 @@ def process_files(filepaths, line_numbers, output_filepath):
 # result = process_files(filepaths, line_numbers, output_filepath)
 # print(result)
 
+# ###################################################################################################
+# ######################## SSB_10 VARYING THREADCOUNTS ROW GROUP SIZE 10k ###########################
+# ###################################################################################################
+# ######## q1
+# # threadcount 1
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_1/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount1_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+# # threadcount 4
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_4/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount4_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+# # threadcount 8
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_8/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount8_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+# #######################################################################################################
+# ######################## SSB_10 VARYING THREADCOUNTS ROW GROUP SIZE DEFAULT ###########################
+# #######################################################################################################
+# ######## q1
+# # threadcount 1
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_1/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount1_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+# # threadcount 4
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_4/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount4_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+# # threadcount 8
+# filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_8/q1/profile_{i}.md" for i in range(50)]
+# del filepaths[0] # rm first profiling because it is cold
+# line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
+# line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
+# output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount8_q1.md'
+# result = process_files(filepaths, line_numbers, output_filepath)
+# print(result)
+
+
 ###################################################################################################
-######################## SSB_10 VARYING THREADCOUNTS ROW GROUP SIZE 10k ###########################
+######################## SSB_1 VARYING THREADCOUNTS ROW GROUP SIZE 10k ###########################
 ###################################################################################################
 ######## q1
 # threadcount 1
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_1/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_10k/threadcount_1/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount1_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount1_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
 
 # threadcount 4
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_4/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_10k/threadcount_4/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount4_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount4_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
 
 # threadcount 8
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_10k/threadcount_8/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_10k/threadcount_8/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount8_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_10k_threadcount8_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
 
 #######################################################################################################
-######################## SSB_10 VARYING THREADCOUNTS ROW GROUP SIZE DEFAULT ###########################
+######################## SSB_1 VARYING THREADCOUNTS ROW GROUP SIZE DEFAULT ###########################
 #######################################################################################################
 ######## q1
 # threadcount 1
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_1/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_default/threadcount_1/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount1_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount1_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
 
 # threadcount 4
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_4/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_default/threadcount_4/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount4_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount4_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
 
 # threadcount 8
-filepaths = [f"ssb_10/outputs/hot_repetition/rowgroupsize_default/threadcount_8/q1/profile_{i}.md" for i in range(50)]
+filepaths = [f"ssb_1/outputs/hot_repetition/rowgroupsize_default/threadcount_8/q1/profile_{i}.md" for i in range(50)]
 del filepaths[0] # rm first profiling because it is cold
 line_numbers_ = [9, 58, 64, 72, 81, 95, 116]
 line_numbers = [line_numbers_[i]-1 for i in range(len(line_numbers_))]
-output_filepath = 'ssb_10/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount8_q1.md'
+output_filepath = 'ssb_1/aggregated_profiling/ssb_10_rowgroupsize_default_threadcount8_q1.md'
 result = process_files(filepaths, line_numbers, output_filepath)
 print(result)
